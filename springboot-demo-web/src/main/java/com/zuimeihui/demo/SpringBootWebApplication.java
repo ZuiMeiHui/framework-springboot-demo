@@ -6,13 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 程序入口
  * 
- * @author 醉美会 ZuiMeiHui.com
- * @date 2023-11-18 10:37:30
+ * @ClassName: SpringBootWebApplication
+ * @Description: TODO
+ * @author ZuiMeiHui.com 醉美会
  */
 @SpringBootApplication(scanBasePackages = { "com.zuimeihui.demo" })
-public class DemoApplication {
+public class SpringBootWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(SpringBootWebApplication.class, args);
 	}
 }

@@ -21,10 +21,11 @@ import com.zuimeihui.demo.dto.DemoDepartmentQueryDTO;
 import com.zuimeihui.demo.service.demo.DemoDepartmentService;
 
 /**
- * DemoDepartmentController
+ * 部门控制器
  * 
- * @author 醉美会 ZuiMeiHui.com
- * @date 2023-11-12 20:49:53
+ * @ClassName: DemoDepartmentController
+ * @Description: TODO
+ * @author ZuiMeiHui.com 醉美会
  */
 @RestController
 @RequestMapping("/demo-department")
@@ -34,15 +35,21 @@ public class DemoDepartmentController {
 	private DemoDepartmentService demoDepartmentService;
 
 	/**
-	 * 列表-带分页
+	 * 部门列表-带分页
 	 * 
-	 * @param queryDTO
-	 * @return
+	 * @Title: listPage
+	 * @Description: TODO
+	 * @param @param  userId
+	 * @param @param  userName
+	 * @param @param  queryDTO
+	 * @param @return 参数
+	 * @return BaseResult<?> 返回类型
+	 * @throws
+	 * @author ZuiMeiHui.com 醉美会
 	 */
 	@PostMapping({ "/list/page" })
-	public BaseResult<?> listPage(
-			@RequestParam(value= Constants.USER_ID_KEY, required = false) String userId,
-			@RequestParam(value= Constants.USER_NAME_KEY, required = false) String userName,
+	public BaseResult<?> listPage(@RequestParam(value = Constants.USER_ID_KEY, required = false) String userId,
+			@RequestParam(value = Constants.USER_NAME_KEY, required = false) String userName,
 			@RequestBody DemoDepartmentQueryDTO queryDTO) {
 		queryDTO.setFields("id");
 		queryDTO.setOrder("desc");
@@ -51,15 +58,21 @@ public class DemoDepartmentController {
 	}
 
 	/**
-	 * 列表-不带分页
+	 * 部门列表-不带分页
 	 * 
-	 * @param queryDTO
-	 * @return
+	 * @Title: list
+	 * @Description: TODO
+	 * @param @param  userId
+	 * @param @param  userName
+	 * @param @param  queryDTO
+	 * @param @return 参数
+	 * @return BaseResult<?> 返回类型
+	 * @throws
+	 * @author ZuiMeiHui.com 醉美会
 	 */
 	@PostMapping({ "/list" })
-	public BaseResult<?> list(
-			@RequestParam(value= Constants.USER_ID_KEY, required = false) String userId,
-			@RequestParam(value= Constants.USER_NAME_KEY, required = false) String userName,
+	public BaseResult<?> list(@RequestParam(value = Constants.USER_ID_KEY, required = false) String userId,
+			@RequestParam(value = Constants.USER_NAME_KEY, required = false) String userName,
 			@RequestBody DemoDepartmentQueryDTO queryDTO) {
 		queryDTO.setFields("id");
 		queryDTO.setOrder("desc");
@@ -68,63 +81,86 @@ public class DemoDepartmentController {
 	}
 
 	/**
-	 * 新增
+	 * 部门新增
 	 * 
-	 * @param dto
-	 * @return
+	 * @Title: add
+	 * @Description: TODO
+	 * @param @param  userId
+	 * @param @param  userName
+	 * @param @param  dto
+	 * @param @return 参数
+	 * @return BaseResult<?> 返回类型
+	 * @throws
+	 * @author ZuiMeiHui.com 醉美会
 	 */
 	@PostMapping({ "/add" })
-	public BaseResult<?> add(
-			@RequestParam(value= Constants.USER_ID_KEY, required = false) String userId,
-			@RequestParam(value= Constants.USER_NAME_KEY, required = false) String userName,
+	public BaseResult<?> add(@RequestParam(value = Constants.USER_ID_KEY, required = false) String userId,
+			@RequestParam(value = Constants.USER_NAME_KEY, required = false) String userName,
 			@RequestBody DemoDepartmentDTO dto) {
 		demoDepartmentService.save(dto, userId, userName);
 		return BaseResult.success(dto.getId());
 	}
 
 	/**
-	 * 编辑
+	 * 部门编辑
 	 * 
-	 * @param dto
-	 * @param id
-	 * @return
+	 * @Title: edit
+	 * @Description: TODO
+	 * @param @param  userId
+	 * @param @param  userName
+	 * @param @param  dto
+	 * @param @param  id
+	 * @param @return 参数
+	 * @return BaseResult<?> 返回类型
+	 * @throws
+	 * @author ZuiMeiHui.com 醉美会
 	 */
 	@PutMapping({ "/{id}/edit" })
-	public BaseResult<?> edit(
-			@RequestParam(value= Constants.USER_ID_KEY, required = false) String userId,
-			@RequestParam(value= Constants.USER_NAME_KEY, required = false) String userName,
-			@RequestBody DemoDepartmentDTO dto, 
-			@PathVariable("id") Long id) {
+	public BaseResult<?> edit(@RequestParam(value = Constants.USER_ID_KEY, required = false) String userId,
+			@RequestParam(value = Constants.USER_NAME_KEY, required = false) String userName,
+			@RequestBody DemoDepartmentDTO dto, @PathVariable("id") Long id) {
 		dto.setId(id);
 		demoDepartmentService.save(dto, userId, userName);
 		return BaseResult.success(dto.getId());
 	}
 
 	/**
-	 * 详情
+	 * 部门详情
 	 * 
-	 * @param id
-	 * @return
+	 * @Title: detail
+	 * @Description: TODO
+	 * @param @param  userId
+	 * @param @param  userName
+	 * @param @param  id
+	 * @param @return 参数
+	 * @return BaseResult<?> 返回类型
+	 * @throws
+	 * @author ZuiMeiHui.com 醉美会
 	 */
 	@GetMapping({ "/{id}/detail" })
-	public BaseResult<?> detail(
-			@RequestParam(value= Constants.USER_ID_KEY, required = false) String userId,
-			@RequestParam(value= Constants.USER_NAME_KEY, required = false) String userName,
+	public BaseResult<?> detail(@RequestParam(value = Constants.USER_ID_KEY, required = false) String userId,
+			@RequestParam(value = Constants.USER_NAME_KEY, required = false) String userName,
 			@PathVariable("id") Long id) {
 		DemoDepartmentDTO demoDepartmentDTO = demoDepartmentService.get(id);
 		return BaseResult.success(demoDepartmentDTO);
 	}
 
 	/**
-	 * 删除
+	 * 部门删除
 	 * 
-	 * @param id
-	 * @return
+	 * @Title: delete
+	 * @Description: TODO
+	 * @param @param  userId
+	 * @param @param  userName
+	 * @param @param  id
+	 * @param @return 参数
+	 * @return BaseResult<?> 返回类型
+	 * @throws
+	 * @author ZuiMeiHui.com 醉美会
 	 */
 	@DeleteMapping({ "/{id}/delete" })
-	public BaseResult<?> delete(
-			@RequestParam(value= Constants.USER_ID_KEY, required = false) String userId,
-			@RequestParam(value= Constants.USER_NAME_KEY, required = false) String userName,
+	public BaseResult<?> delete(@RequestParam(value = Constants.USER_ID_KEY, required = false) String userId,
+			@RequestParam(value = Constants.USER_NAME_KEY, required = false) String userName,
 			@PathVariable("id") Long id) {
 		demoDepartmentService.remove(id);
 		return BaseResult.success(id);

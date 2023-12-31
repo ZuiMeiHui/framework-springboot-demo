@@ -11,18 +11,27 @@ import com.zuimeihui.demo.dto.DemoDepartmentDTO;
 import com.zuimeihui.demo.dto.DemoDepartmentQueryDTO;
 
 /**
- * 部门表，服务层
+ * 部门服务层
  * 
- * @author 醉美会 ZuiMeiHui.com
- * @date 2023-11-12 20:29:00
+ * @ClassName: DemoDepartmentService
+ * @Description: TODO
+ * @author ZuiMeiHui.com 醉美会
  */
 @Service
-public class DemoDepartmentService extends BaseService<DemoDepartmentMapper, DemoDepartmentDTO, DemoDepartmentQueryDTO> {
+public class DemoDepartmentService
+		extends BaseService<DemoDepartmentMapper, DemoDepartmentDTO, DemoDepartmentQueryDTO> {
 
 	/**
 	 * 保存和更新
 	 * 
-	 * @param dto
+	 * @Title: save
+	 * @Description: TODO
+	 * @param @param dto
+	 * @param @param userId
+	 * @param @param userName 参数
+	 * @return void 返回类型
+	 * @throws
+	 * @author ZuiMeiHui.com 醉美会
 	 */
 	public void save(DemoDepartmentDTO dto, String userId, String userName) {
 		dto.setAdminId(userId);
@@ -36,7 +45,7 @@ public class DemoDepartmentService extends BaseService<DemoDepartmentMapper, Dem
 			mapper.updateByPrimaryKeySelective(dto);
 		}
 	}
-	
+
 	/**
 	 * 入参加载
 	 */
@@ -52,7 +61,7 @@ public class DemoDepartmentService extends BaseService<DemoDepartmentMapper, Dem
 	public DemoDepartmentDTO handleQueryResult(DemoDepartmentDTO dto) {
 		return dto;
 	}
-	
+
 	/**
 	 * 检查保存入参
 	 */
@@ -60,7 +69,7 @@ public class DemoDepartmentService extends BaseService<DemoDepartmentMapper, Dem
 	public BaseResult<?> checkSaveInput(DemoDepartmentDTO dto) {
 		return BaseResult.success();
 	}
-	
+
 	/**
 	 * 检查删除入参
 	 */
